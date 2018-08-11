@@ -2,13 +2,17 @@
 % Please edit documentation in R/simpleLm.R
 \name{simpleLm}
 \alias{simpleLm}
-\title{simple linear regression}
+\title{modeling simple linear regression}
 \usage{
 simpleLm(dataset, target = "target", family = "binomial")
 }
 \arguments{
-\item{dataset}{test}
+\item{dataset}{object name of dataset for simple linear regression.}
+
+\item{target}{objective variable on dataset for simple linear regression.}
+
+\item{family}{a description of the error distribution and link function to be used in the model. default "binomial"}
 }
 \description{
-simple linear regression
+modeling simple linear regression
 }
