@@ -14,9 +14,9 @@ simpleLm(dataset, target, family, ...)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 %%  ~~ If necessary, more details than the description above ~~
-\item{dataset}{object name of dataset for simple linear regression.}
-\item{target}{objective variable on dataset for simple linear regression.}
-\item{family}{a description of the error distribution and link function to be used in the model. default "binomial"}
+%%\item{dataset}{object name of dataset for simple linear regression.}
+%%\item{target}{objective variable on dataset for simple linear regression.}
+%%\item{family}{a description of the error distribution and link function to be used in the model. default "binomial"}
 
 }
 \value{
