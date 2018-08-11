@@ -1,5 +1,5 @@
-\name{hello}
-\alias{hello}
+\name{simpleLm}
+\alias{simpleLm}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
@@ -9,13 +9,23 @@ simpleLm package
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-hello()
+simpleLm(dataset, target, family, ...)
 }
 %- maybe also 'usage' for other objects documented here.
-\details{
+\arguments{
 %%  ~~ If necessary, more details than the description above ~~
+\item{dataset}{object name of dataset for simple linear regression.}
+\item{target}{objective variable on dataset for simple linear regression.}
+\item{family}{a description of the error distribution and link function to be used in the model. default "binomial"}
+
 }
 \value{
+\item{cf.name}{the name of variable used simple linear regression.}
+\item{cf.est}{the estimated coefficients value.}
+\item{cf.stderr}{the stderr of estimated coefficients value.}
+\item{cf.zvalue}{the standardization estimated coefficients value.}
+\item{cf.pr}{the p-value of estimated coefficients value.}
+
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
@@ -38,17 +48,16 @@ hello()
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function ()
-{
-    print("Hello, world!")
-  }
+# for example, you have the dataset(data.frame) following,
+> head(test_df)
+  Sepal.Length Sepal.Width Petal.Length Petal.Width target
+1          7.0         3.2          4.7         1.4      0
+2          6.4         3.2          4.5         1.5      1
+3          6.9         3.1          4.9         1.5      0
+4          5.5         2.3          4.0         1.3      0
+5          6.5         2.8          4.6         1.5      1
+
+# you can ...
+simpleLm(dataset = test_df, target = 'target')
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

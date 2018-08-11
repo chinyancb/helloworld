@@ -1,42 +1,32 @@
-# Hello, world!
-#
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
-#
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Build and Reload Package:  'Cmd + Shift + B'
-#   Check Package:             'Cmd + Shift + E'
-#   Test Package:              'Cmd + Shift + T'
+# 変数ごとに単回帰を実行する
+# モデリングの際に変数の大まかな選択に使用する
 
-hello <- function() {
-  print("Hello, world!")
+simpleLm <- function(dataset, target='target', family='binomial') {
+
+  # 回帰係数の統計量
+  cf.name   <- NULL
+  cf.est    <- NULL
+  cf.stderr <- NULL
+  cf.zvalue <- NULL
+  cf.pr     <- NULL
+
+  for (feature in colnames(dataset)) {
+
+    if (feature == target) next
+
+    #show(feature)
+    tmp_df <- dataset[, c("target", feature)]
+
+    # 単回帰モデル
+    model <- glm(target ~ ., data = tmp_df, family = 'binomial')
+
+    # 回帰係数の情報を取得
+    cf.name   <- append(cf.name, dimnames(summary(model)$coefficients)[[1]][2])
+    cf.est    <- append(cf.est, summary(model)$coefficients[2])
+    cf.stderr <- append(cf.stderr, summary(model)$coefficients[4])
+    cf.zvalue <- append(cf.zvalue, summary(model)$coefficients[6])
+    cf.pr     <- append(cf.pr, summary(model)$coefficients[8])
+    rm(tmp_df)
+  }
+  return(data.frame(cf.name, cf.est, cf.stderr, cf.zvalue, cf.pr))
 }
-
-## 変数ごとに単回帰を実行
-#cf.name   <- NULL
-#cf.est    <- NULL
-#cf.stderr <- NULL
-#cf.zvalue <- NULL
-#cf.pr     <- NULL
-#for (feature in colnames(iris_logit_df)) {
-#
-#  if (feature == 'target') next
-#
-#  show(feature)
-#  tmp_df <- iris_logit_df[, c("target", feature)]
-#  model <- glm(target ~ ., data = tmp_df, family = 'binomial')
-#
-#  # 回帰係数の情報を取得
-#  cf.name   <- append(cf.name, dimnames(summary(model)$coefficients)[[1]][2])
-#  cf.est    <- append(cf.est, summary(model)$coefficients[2][1])
-#  cf.stderr <- append(cf.stderr, summary(model)$coefficients[2][2])
-#  cf.zvalue <- append(cf.zvalue, summary(model)$coefficients[2][3])
-#  cf.pr     <- append(cf.pr, summary(model)$coefficients[2][4])
-#  #show(summary(model))
-#  rm(tmp_df)
-#}
