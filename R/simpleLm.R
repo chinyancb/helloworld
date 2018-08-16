@@ -1,7 +1,7 @@
 # 変数ごとに単回帰を実行する
 # モデリングの際に変数の大まかな選択に使用する
 #' modeling simple linear regression
-#' @param dataset object name of dataset for simple linear regression.
+#' @param dataset object name of dataset for simple linear regression. (type data.frame)
 #' @param target objective variable on dataset for simple linear regression.
 #' @param family a description of the error distribution and link function to be used in the model. default "binomial"
 #' @importFrom dplyr select arrange mutate case_when %>%
